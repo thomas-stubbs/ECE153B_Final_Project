@@ -17,7 +17,5 @@
 #### Week of 02/22/2021 - 03/01/2021
 
 - [ ] Discuss with TA's/Instructors about appropriate proximity sensors for this project.
-- [ ] Order required equipment
-- [ ]   Proximity Sensors
-- [ ]   Wires
+- [ ] Order required equipment (proximity sensors, wires)
 - [ ] Explore Soldering for implementation
