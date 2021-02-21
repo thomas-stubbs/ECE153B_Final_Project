@@ -1,4 +1,9 @@
-## Welcome to GitHub Pages
+# Header 1
+## Header 2
+### Header 3
+#### Header 4
+##### Header 5
+###### Header 6
 
 You can use the [editor on GitHub](https://github.com/stubbshub/ECE153B_Final_Project/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
