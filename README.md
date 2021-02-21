@@ -1,17 +1,14 @@
-# Header 1
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
-###### Header 6
+# Cycling Sensors
+### By Thomas Stubbs
 
-You can use the [editor on GitHub](https://github.com/stubbshub/ECE153B_Final_Project/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+## Project Overview
+The goal of this project is to use the STM32L4 Discover Board and peripheral sensors to gather and display data from a bicycle that is pertinent to the cyclist. Specifically, the cyclist’s speed, pedal cadence, and brake temperature will be read and displayed on the Discovery Board’s built in LCD. 
+Speed and cadence will be measured in the same way, with two-piece proximity sensors to measure revolution speed. One part of the sensor will be mounted on the bicycle frame and its counterpart will be mounted on the wheel in the case of speed measurement, and on the pedal crank arm in the case of cadence measurement. Both of these peripherals will be interfaced with UART to communicate with the microcontroller.
+Brake temperature will be measured using the TC-74 temperature mounted on the bicycle frame in close proximity to the brake rotor. This information will help inform the cyclist whether or not it’s safe to touch the brake system if any maintenance is required. Much in the same way as was done in Lab 4, this peripheral will communicate with the microcontroller through I2C serial interfacing.
+These three measurements will be displayed on the Discovery Board’s LCD, with the joystick allowing the cyclist to page through them.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Block Diagram
+![Block Diagram](/images/CyclingSensorsBlockDiagram.jpeg)
 
 ```markdown
 Syntax highlighted code block
