@@ -14,8 +14,17 @@
 ![Block Diagram](/images/CyclingSensorsBlockDiagram.jpeg)
 
 ## Weekly Updates
-#### Week of 02/22/2021 - 03/01/2021
+#### Week of 02/22/2021 - 02/28/2021
 
-- [ ] Discuss with TA's/Instructors about appropriate proximity sensors for this project.
+- [x] Discuss with TA's/Instructors about appropriate proximity sensors for this project.
 - [ ] Order required equipment (proximity sensors, wires)
 - [ ] Explore Soldering for implementation
+  Still looking into hall effect sensor vs reed switch for measuring speed/cadence. From what I gather, they're a simpler type of sensor than I anticipated, interfacing with voltage/current pulses rather than digital data interfacing. I'll need to explore other ideas with this project in order to meet the required 2 different serial communication protocols. Next week will be focused on finishing up more detailed research on how to implement this project under the requirements and establishing the project organization.
+  
+#### Week of 03/01/2021 - 03/07/2021
+
+- [ ] Finish reseaching appropriate proximity sensor
+- [ ] Finalize project plan to satisfy requirements
+- [ ] Establish project organization
+- [ ] Order all necessary parts
+  Still looking into hall effect sensor vs reed switch for measuring speed/cadence. From what I gather, they're a simpler type of sensor than I anticipated, interfacing with voltage/current pulses rather than digital data interfacing. I'll need to explore other ideas with this project in order to meet the required 2 different serial communication protocols. Next week will be focused on finishing up more detailed research on how to implement this project under the requirements and establishing the project organization.
