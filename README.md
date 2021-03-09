@@ -24,7 +24,16 @@
   
 #### Week of 03/01/2021 - 03/07/2021
 
-- [ ] Finish reseaching appropriate proximity sensor
-- [ ] Finalize project plan to satisfy requirements
-- [ ] Establish project organization
-- [ ] Order all necessary parts
+- [x] Finish reseaching appropriate proximity sensor
+- [x] Finalize project plan to satisfy requirements
+- [x] Establish project organization
+- [x] Order all necessary parts
+
+  Decided to implement the speed and cadence sensors with simple reed swithces mounted to the bicycle frame with magnets attatched to the spoke/pedal crank arm. Both of these will communicate with the STM32L476VG Discovery Board using the microcontroller's built in timer channels operating in the capture mode. Since this is not a serial communication protocol, I've also purchased an additional HC-05 Bluetooth module to see if I can get the sensors to interface with the microcontroller wirelessly via UART and Bluetooth.
+![Parts Order](/images/parts-order.png)
+
+#### Week of 03/08/2021 - 03/14/2021
+
+- [ ] Import and adapt project code
+- [ ] Debug TC74 temperature sensor interface
+- [ ] Research how to interface reed switches and Discovery Board via Bluetooth
