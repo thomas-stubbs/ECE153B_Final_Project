@@ -35,5 +35,5 @@
 #### Week of 03/08/2021 - 03/14/2021
 
 - [ ] Import and adapt project code
-- [ ] Debug TC74 temperature sensor interface
+- [ ] Debug TC74 Temperature sensor interface
 - [ ] Research how to interface reed switches and Discovery Board via Bluetooth
