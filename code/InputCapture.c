@@ -1,14 +1,5 @@
 #include "InputCapture.h"
 
-uint32_t volatile speed_last_value = 0;
-uint32_t volatile cadence_last_value = 0;
-uint32_t volatile speed_current_value = 0;
-uint32_t volatile cadence_current_value = 0;
-uint32_t volatile speed_overflow_count = 0;
-uint32_t volatile cadence_overflow_count = 0;
-uint32_t volatile speed_time_interval = 0;
-uint32_t volatile cadence_time_interval = 0;
-
 void Input_Capture_Init() {
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
 	GPIOE->MODER &= ~(GPIO_MODER_MODE13 | GPIO_MODER_MODE14);
@@ -33,33 +24,3 @@ void Input_Capture_Init() {
 	NVIC_EnableIRQ(TIM1_IRQn);
 	NVIC_SetPriority(TIM1_IRQn, 0);
 }
-
-void TIM1_IRQHandler(void) {
-	if(TIM4->SR & TIM_SR_UIF){
-		TIM4->SR &= ~TIM_SR_UIF;
-		speed_overflow_count++;
-		cadence_overflow_count++;
-	}if(TIM4->SR & TIM_SR_CC3IF){ //Wheel Magent
-		TIM4->SR &= ~TIM_SR_CC3IF;
-		if(!speed_last_value)
-			speed_last_value = TIM1->CCR3;
-		else{
-			speed_current_value = TIM1->CCR3;
-			speed_time_interval = (0x10000*speed_overflow_count)+(speed_current_value-speed_last_value);
-			speed_overflow_count = 0;
-			speed_last_value = speed_current_value;
-		}
-	}
-	if(TIM4->SR & TIM_SR_CC4IF){ //Crank Magnet
-		TIM4->SR &= ~TIM_SR_CC4IF;
-		if(!cadence_last_value)
-			cadnece_last_value = TIM1->CCR4;
-		else{
-			cadence_current_value = TIM1->CCR4;
-			cadence_time_interval = (0x10000*cadence_overflow_count)+(cadence_current_value-cadence_last_value);
-			cadence_overflow_count = 0;
-			cadence_last_value = cadence_current_value;
-		}
-	}
-}
-
