@@ -1,4 +1,4 @@
-#include "InputeCapture.h"
+#include "InputCapture.h"
 
 void Input_Capture_Init() {
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
