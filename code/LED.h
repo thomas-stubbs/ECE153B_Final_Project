@@ -9,8 +9,4 @@ void Red_LED_Off(void);
 void Red_LED_On(void);
 void Red_LED_Toggle(void);
 
-void Green_LED_Off(void);
-void Green_LED_On(void);
-void Green_LED_Toggle(void);
-
 #endif
