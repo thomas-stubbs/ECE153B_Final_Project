@@ -1,5 +1,12 @@
 #include "InputCapture.h"
 
+uint32_t volatile speed_last_value = 0;
+uint32_t volatile cadence_last_value = 0;
+uint32_t volatile speed_overflow_count = 0;
+uint32_t volatile cadence_overflow_count = 0;
+uint32_t volatile speed_time_interval = 0;
+uint32_t volatile cadence_time_interval = 0;
+
 void Input_Capture_Init() {
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOEEN;
 	GPIOE->MODER &= ~(GPIO_MODER_MODE13 | GPIO_MODER_MODE14);
