@@ -1,7 +1,5 @@
 #include "EXTI.h"
 
-int volatile page = 0;
-
 void EXTI_Init(void) {
     // Initialize Joystick
     RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
@@ -29,20 +27,3 @@ void EXTI_Init(void) {
     NVIC_EnableIRQ(EXTI2_IRQn);
     NVIC_SetPriority(EXTI2_IRQn, 1);
 }
-
-void EXTI1_IRQHandler(void) {
-	EXTI->PR1 |= EXTI_PR1_PIF1;
-	if(!page)
-		page = 2;
-	else
-		page--;
-}
-
-void EXTI2_IRQHandler(void) {
-	EXTI->PR1 |= EXTI_PR1_PIF2;
-	if(page == 2)
-		page = 0;
-	else
-		page++;
-}
-
