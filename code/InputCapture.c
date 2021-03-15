@@ -24,3 +24,15 @@ void Input_Capture_Init() {
 	NVIC_EnableIRQ(TIM1_IRQn);
 	NVIC_SetPriority(TIM1_IRQn, 0);
 }
+
+void TIM1_IRQHandler(void) {
+	if(TIM4->SR & TIM_SR_UIF){
+		TIM4->SR &= ~TIM_SR_UIF;
+		overflowCount = overflowCount+1;
+	}if(TIM4->SR & TIM_SR_CC3IF){ //Wheel Magent
+		TIM4->SR &= ~TIM_SR_CC3IF;
+	}
+	if(TIM4->SR & TIM_SR_CC4IF){ //Crank Magnet
+		TIM4->SR &= ~TIM_SR_CC4IF;
+	}
+}
