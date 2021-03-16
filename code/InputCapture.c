@@ -21,6 +21,8 @@ void Input_Capture_Init() {
 	TIM1->SR &= ~TIM_SR_UIF;
 	TIM1->CR1 &= ~TIM_CR1_DIR;
 	TIM1->CR1 |= TIM_CR1_CEN;
-	NVIC_EnableIRQ(TIM1_IRQn);
-	NVIC_SetPriority(TIM1_IRQn, 0);
+	NVIC_EnableIRQ(TIM1_UP_TIM16_IRQn);
+	NVIC_SetPriority(TIM1_UP_TIM16_IRQn, 0);
+	NVIC_EnableIRQ(TIM1_CC_IRQn);
+	NVIC_SetPriority(TIM1_CC_IRQn, 1);
 }
