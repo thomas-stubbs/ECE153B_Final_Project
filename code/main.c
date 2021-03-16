@@ -1,7 +1,7 @@
 #include "EXTI.h"
 #include "LCD.h"
 #include "LED.h"
-#include "Input_Capture.h"
+#include "InputCapture.h"
 //#include "I2C.c"
 #include "SysClock.h"
 #include "stm32l476xx.h"
@@ -34,13 +34,17 @@ void EXTI2_IRQHandler(void) {
 		page = 0;
 }
 
-void TIM1_IRQHandler(void) {
-	if(TIM4->SR & TIM_SR_UIF){
-		TIM4->SR &= ~TIM_SR_UIF;
+void TIM1_UP_TIM16_IRQHandler(void){
+	if(TIM1->SR & TIM_SR_UIF){
+		TIM1->SR &= ~TIM_SR_UIF;
 		speed_overflow_count++;
 		cadence_overflow_count++;
-	}if(TIM4->SR & TIM_SR_CC3IF){ //Wheel Magent
-		TIM4->SR &= ~TIM_SR_CC3IF;
+	}
+}
+
+void TIM1_CC_IRQHandler(void) {
+	if(TIM1->SR & TIM_SR_CC3IF){ //Wheel Magent
+		TIM1->SR &= ~TIM_SR_CC3IF;
 		if(!speed_last_value)
 			speed_last_value = TIM1->CCR3;
 		else{
@@ -50,10 +54,10 @@ void TIM1_IRQHandler(void) {
 			speed_last_value = speed_current_value;
 		}
 	}
-	if(TIM4->SR & TIM_SR_CC4IF){ //Crank Magnet
-		TIM4->SR &= ~TIM_SR_CC4IF;
+	if(TIM1->SR & TIM_SR_CC4IF){ //Crank Magnet
+		TIM1->SR &= ~TIM_SR_CC4IF;
 		if(!cadence_last_value)
-			cadnece_last_value = TIM1->CCR4;
+			cadence_last_value = TIM1->CCR4;
 		else{
 			cadence_current_value = TIM1->CCR4;
 			cadence_time_interval = (0x10000*cadence_overflow_count)+(cadence_current_value-cadence_last_value);
@@ -92,7 +96,7 @@ int main(void){
 		}
 		if(page == 1){ //Display cadence
 			cadence = 60000000 / cadence_time_interval;
-			sprintf(message,"%.03d rpm", cadence);
+			sprintf(message,"%.02d rpm", cadence);
 			LCD_DisplayString((uint8_t *) message);
 		}
 		/*
