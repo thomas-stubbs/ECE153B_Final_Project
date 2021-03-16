@@ -2,9 +2,11 @@
 #include "LCD.h"
 #include "LED.h"
 #include "Input_Capture.h"
-#include "I2C.h"
+//#include "I2C.c"
 #include "SysClock.h"
 #include "stm32l476xx.h"
+
+#include <stdio.h>
 
 int volatile page = 0;
 uint32_t volatile speed_last_value = 0;
@@ -19,17 +21,17 @@ uint32_t volatile cadence_time_interval = 0;
 void EXTI1_IRQHandler(void) {
 	EXTI->PR1 |= EXTI_PR1_PIF1;
 	if(!page)
-		page = 2;
+		page = 1;
 	else
-		page--;
+		page = 0;
 }
 
 void EXTI2_IRQHandler(void) {
 	EXTI->PR1 |= EXTI_PR1_PIF2;
-	if(page == 2)
-		page = 0;
+	if(!page)
+		page = 1;
 	else
-		page++;
+		page = 0;
 }
 
 void TIM1_IRQHandler(void) {
@@ -73,12 +75,15 @@ int main(void){
 
 	Input_Capture_Init();
 
-	I2C_GPIO_Init();
-	I2C_Initialization();
+	//I2C_GPIO_Init();
+	//I2C_Initialization();
 
 	float speed;
 	int cadence;
 	char message[6];
+	// uint8_t SlaveAddress;
+	// uint8_t Data_Receive[6];
+	// uint8_t Data_Send[6] = {0};
 	while(1){
 		if(page == 0){ //Display speed
 			speed = 4774863.64 / speed_time_interval;
@@ -90,7 +95,26 @@ int main(void){
 			sprintf(message,"%.03d rpm", cadence);
 			LCD_DisplayString((uint8_t *) message);
 		}
+		/*
 		if(page == 2){ //Display Brake Temperature
+			memset(Data_Receive, 0, sizeof(Data_Receive));
+			memset(message, '\0', sizeof(message));
+
+			SlaveAddress = 0x48 << 1;
+
+			I2C_SendData(I2C1, SlaveAddress, Data_Send, 1);
+			I2C_ReceiveData(I2C1, SlaveAddress, Data_Receive, 1);
+			int8_t measurement = Data_Receive[0];
+			if(measurement & 0x80){
+				measurement = ~measurement;
+				measurement += 1;
+				measurement *= -1;
+			}
+			sprintf(message, "%2.2d C", measurement);
+			LCD_DisplayString((uint8_t *) message);
+			// Some delay
+			for(int i = 0; i < 50000; ++i);
 		}
+		*/
 	}
 }
