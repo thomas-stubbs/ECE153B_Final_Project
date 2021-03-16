@@ -23,7 +23,7 @@ void EXTI_Init(void) {
 	
     // Configure and Enable in NVIC
     NVIC_EnableIRQ(EXTI1_IRQn);
-    NVIC_SetPriority(EXTI1_IRQn, 1);
+    NVIC_SetPriority(EXTI1_IRQn, 2);
     NVIC_EnableIRQ(EXTI2_IRQn);
-    NVIC_SetPriority(EXTI2_IRQn, 1);
+    NVIC_SetPriority(EXTI2_IRQn, 2);
 }
