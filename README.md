@@ -10,7 +10,7 @@
   
   These three measurements are displayed on the Discovery Board’s LCD, with the built in joystick allowing the cyclist to page through them.
   
-## [Demo Video](https://youtu.be/slsgJ71hUfQ)
+**[Demo Video](https://youtu.be/slsgJ71hUfQ)**
 
 ## Block Diagram
 ![Block Diagram](/images/CyclingSensorsBlockDiagram.jpeg)
@@ -19,6 +19,8 @@
 
 #### Final Update 03/18/2021
   I finished my project yesterday afternoon and filmed the demo video with help from my housemate. The speed and cadence sensors work as expected, however I wasn't able to implement the temperature sensor into the project. The SDA pin on the sensor broke clean off while I was trying to wire it on the last day, so I had no time to order a replacement. The code for the sensor is included in the project, but all the initializations and calculations relying on the sensor are commented out.
+  
+![It's Bwoken!](/images/gone-too-soon.jpeg)
   
   The speed and cadence sensors work in almost identical ways, albeit different math to calculate the appropriate values for each. They both use TIM4 of the Discovery Board operating at 1 MHz in input capture mode to calculate the time for a full rotation in microsseconds. There are two magnets, one attatched to the spokes of the rear wheel and one to the pedal crank arm, that will close their respective circuits and trigger an interrupt in the corresponding timer channel.
   
